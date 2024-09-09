@@ -22,7 +22,19 @@ const registroUsuario = async (req, res) => {
   }
 };
 
+const deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await UsersModel.findByIdAndDelete(id);
+    res.status(200).json({ message: "usuario eliminado correctamente" });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ message: "error al eliminar usuario" });
+  }
+};
+
 export default {
   getAllUsers,
   registroUsuario,
+  deleteUser,
 };
