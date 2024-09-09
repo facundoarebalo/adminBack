@@ -7,6 +7,7 @@ const router = express.Router();
 router.get("/users", usersController.getAllUsers);
 
 // crear un usuario
+router.post("/register", usersController.registroUsuario);
 
 // actualizar un usuario
 
