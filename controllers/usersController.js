@@ -22,6 +22,22 @@ const registroUsuario = async (req, res) => {
   }
 };
 
+const updateUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { nombre, apellido, email } = req.body;
+    const usuario = await UsersModel.findByIdAndUpdate(
+      id,
+      { nombre, apellido, email },
+      { new: true }
+    );
+    res.json(usuario);
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ message: "error al actualizar usuario" });
+  }
+};
+
 const deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
@@ -37,4 +53,5 @@ export default {
   getAllUsers,
   registroUsuario,
   deleteUser,
+  updateUser,
 };
